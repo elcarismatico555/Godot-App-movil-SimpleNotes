@@ -1,12 +1,14 @@
 extends Control
 
 var notas_en_disco: Array
+var nota_eliminada: String
 
 func _ready() -> void:
 	$body/Label.text = Global.Fecha
 	$vistaBuscar.visible = false
 	$editorNota.visible = false
 	$popupColores.visible = false
+	$apartadoEliminadas.visible = false
 	$LabelAvisoGuardado.text = str(Time.get_ticks_msec())
 	cargar_notas_previas_desde_disco()
 
@@ -53,6 +55,9 @@ func nueva_nota(crear_nueva:bool,notaEnDisco:String) -> void:
 		get_node(Global.RUTA_NODO_LISTA).get_child(-1).name = notaEnDisco
 		get_node(Global.RUTA_NODO_LISTA + notaEnDisco).actualizar_nota_enlistada(titulo,color,fecha_mod)
 
+func borrar_nota(nombreNota):
+	nota_eliminada = nombreNota
+
 func buscar_nota() -> void:
 	$vistaBuscar.visible = true
 	$vistaBuscar/LineEdit.grab_focus()
@@ -82,7 +87,7 @@ func _on_button_grid_button_up() -> void:
 	$popupColores.visible = true
 
 func _on_button_opciones_main_button_up() -> void:
-	pass
+	$opcionesSeleccion.visible = true
 
 func _input(_event) -> void:
 	if Input.is_action_pressed("ui_cancel"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dns4nlx5tu5ft"]
+[gd_scene load_steps=41 format=3 uid="uid://dns4nlx5tu5ft"]
 
 [ext_resource type="Script" path="res://escenas/inicio/manager.gd" id="1_s58n5"]
 [ext_resource type="Texture2D" uid="uid://goum7nkowi0s" path="res://Resources/icons/LupaBlanca1.png" id="2_bxi8w"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://ce70e8qrbwj3r" path="res://Resources/icons/menuHamburguesa.png" id="4_2ct6b"]
 [ext_resource type="Script" path="res://escenas/inicio/editorNotas.gd" id="7_am5js"]
 [ext_resource type="Script" path="res://escenas/inicio/popupColores.gd" id="8_cfbcx"]
+[ext_resource type="Script" path="res://escenas/inicio/apartadoEliminadas.gd" id="9_fcqlf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwvcf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7g3m"]
 bg_color = Color(0.152941, 0.164706, 0.188235, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
@@ -63,6 +64,12 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlo70"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwvcf"]
+bg_color = Color(0.368627, 0.392157, 0.439216, 1)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eud1j"]
 content_margin_left = 5.0
 bg_color = Color(0.870588, 0.870588, 0.870588, 1)
@@ -109,6 +116,12 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt75e"]
+bg_color = Color(0.247059, 0.286275, 0.360784, 1)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajqkp"]
 content_margin_left = 15.0
 bg_color = Color(0.152941, 0.164706, 0.188235, 1)
@@ -150,7 +163,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_iwvcf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7g3m")
 
 [node name="Label" type="Label" parent="head/Panel"]
 layout_mode = 1
@@ -358,6 +371,47 @@ shortcut_in_tooltip = false
 icon = ExtResource("4_2ct6b")
 icon_alignment = 1
 expand_icon = true
+
+[node name="opcionesSeleccion" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRectSeleccion" type="ColorRect" parent="opcionesSeleccion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.235294, 0.270588, 1)
+
+[node name="PanelSleccion" type="Panel" parent="opcionesSeleccion"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.073
+offset_bottom = 0.119987
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwvcf")
+
+[node name="LabelSeleccion" type="Label" parent="opcionesSeleccion/PanelSleccion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.5
+offset_right = -273.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = " seleccionar"
+vertical_alignment = 1
 
 [node name="vistaBuscar" type="Control" parent="."]
 visible = false
@@ -847,8 +901,65 @@ focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_kcsya")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qdskv")
 
-[node name="LabelAvisoGuardado" type="Label" parent="."]
+[node name="apartadoEliminadas" type="Control" parent="."]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_fcqlf")
+
+[node name="ColorRectEliminadas" type="ColorRect" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.235294, 0.270588, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.073
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.119987
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainerEliminadas" type="VBoxContainer" parent="apartadoEliminadas/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="PanelEliminadas" type="Panel" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.073
+offset_bottom = 0.119987
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pt75e")
+
+[node name="LabelEliminadas" type="Label" parent="apartadoEliminadas/PanelEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.5
+offset_right = -273.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = " Eliminadas"
+vertical_alignment = 1
+
+[node name="LabelAvisoGuardado" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -862,60 +973,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_ajqkp")
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="apartadoEliminadas" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.219608, 0.235294, 0.270588, 1)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainerEliminadas" type="VBoxContainer" parent="apartadoEliminadas/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="Panel" type="Panel" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 114.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_iwvcf")
-
-[node name="Label" type="Label" parent="apartadoEliminadas/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-offset_right = -330.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "Eliminadas"
 vertical_alignment = 1
 
 [connection signal="button_up" from="head/Panel/ButtonGrid" to="." method="_on_button_grid_button_up"]
