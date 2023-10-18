@@ -4,6 +4,7 @@ var titulo: String = ""
 var fecha_modificacion: String = ""
 var color_nota = Color8(0,0,0,255)
 var contenito: String = ""
+var en_papelera: bool = false
 
 func _ready() -> void:
 	color_nota = Global.NEGRO_PREDETERMINADO
@@ -14,6 +15,7 @@ func _on_button_nota_enlistada_button_up() -> void:
 	$/root/main/editorNota.editar_nota(name)
 	$/root/main/editorNota.modo_lectura()
 	$/root/main/editorNota.visible = true
+	cambiar_padre(false)
 
 func actualizar_nota_enlistada(tituloNota,color,fechaMod) -> void:
 	$HBoxContainer/LabelTitulo.text = tituloNota
@@ -22,3 +24,11 @@ func actualizar_nota_enlistada(tituloNota,color,fechaMod) -> void:
 	$HBoxContainer/ColorRect.color.g8 = color[1]
 	$HBoxContainer/ColorRect.color.b8 = color[2]
 	$HBoxContainer/ColorRect.color.a8 = color[3]
+
+func cambiar_padre(restaurar:bool):
+	en_papelera = true
+	if restaurar:
+		pass
+	reparent(Global)
+	reparent(Global.NODO_LISTA_ELIMINADAS)
+	print(get_parent())

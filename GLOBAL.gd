@@ -12,8 +12,11 @@ var ANARANJADO: Color = Color8(235,140,33,255)
 var NEGRO_PREDETERMINADO: Color = Color8(33,35,41,255)
 var RUTA_NODO_LISTA: String = "/root/main/body/ScrollContainer/VBoxContainer/"
 var RUTA_ARCHIVOS: String = "user://"
+var NODO_LISTA_ELIMINADAS = Node.new()
 
 func _ready() -> void:
+	NODO_LISTA_ELIMINADAS = get_node("/root/main/apartadoEliminadas/ScrollContainer/VBoxContainerEliminadas")
+	print(NODO_LISTA_ELIMINADAS)
 	formato_fecha()
 	get_tree().root.disable_3d = true
 

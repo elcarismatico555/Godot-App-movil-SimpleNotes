@@ -8,7 +8,7 @@ func _ready() -> void:
 	$vistaBuscar.visible = false
 	$editorNota.visible = false
 	$popupColores.visible = false
-	$apartadoEliminadas.visible = false
+	#$apartadoEliminadas.visible = false
 	$LabelAvisoGuardado.text = str(Time.get_ticks_msec())
 	cargar_notas_previas_desde_disco()
 

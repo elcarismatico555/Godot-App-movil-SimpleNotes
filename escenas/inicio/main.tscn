@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dns4nlx5tu5ft"]
+[gd_scene load_steps=44 format=3 uid="uid://dns4nlx5tu5ft"]
 
 [ext_resource type="Script" path="res://escenas/inicio/manager.gd" id="1_s58n5"]
 [ext_resource type="Texture2D" uid="uid://goum7nkowi0s" path="res://Resources/icons/LupaBlanca1.png" id="2_bxi8w"]
@@ -64,12 +64,6 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlo70"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwvcf"]
-bg_color = Color(0.368627, 0.392157, 0.439216, 1)
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eud1j"]
 content_margin_left = 5.0
 bg_color = Color(0.870588, 0.870588, 0.870588, 1)
@@ -86,6 +80,7 @@ border_color = Color(0.8, 0.431373, 0.431373, 1)
 bg_color = Color(0, 0, 0, 0.607843)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odw5"]
+content_margin_left = 5.0
 bg_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
@@ -117,10 +112,18 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt75e"]
-bg_color = Color(0.247059, 0.286275, 0.360784, 1)
+bg_color = Color(0.152941, 0.164706, 0.188235, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8vif"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63qdq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u33i8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nup35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajqkp"]
 content_margin_left = 15.0
@@ -372,47 +375,6 @@ icon = ExtResource("4_2ct6b")
 icon_alignment = 1
 expand_icon = true
 
-[node name="opcionesSeleccion" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRectSeleccion" type="ColorRect" parent="opcionesSeleccion"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.219608, 0.235294, 0.270588, 1)
-
-[node name="PanelSleccion" type="Panel" parent="opcionesSeleccion"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.073
-offset_bottom = 0.119987
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_iwvcf")
-
-[node name="LabelSeleccion" type="Label" parent="opcionesSeleccion/PanelSleccion"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 7.5
-offset_right = -273.0
-offset_bottom = -7.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 70
-text = " seleccionar"
-vertical_alignment = 1
-
 [node name="vistaBuscar" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -546,6 +508,8 @@ grow_vertical = 2
 auto_translate = false
 theme_override_colors/font_color = Color(0.0666667, 0.0588235, 0.0588235, 1)
 theme_override_colors/font_placeholder_color = Color(0.670588, 0.670588, 0.670588, 1)
+theme_override_colors/caret_color = Color(0.101961, 0.0901961, 0.0901961, 1)
+theme_override_constants/caret_width = 4
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_1odw5")
 theme_override_styles/focus = SubResource("StyleBoxFlat_1odw5")
@@ -956,8 +920,39 @@ offset_bottom = -7.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = " Eliminadas"
+text = " Papelera"
 vertical_alignment = 1
+
+[node name="ButtonApartadoEliminadas" type="Button" parent="apartadoEliminadas/PanelEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 616.0
+offset_top = 20.0
+offset_right = -23.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h8vif")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_63qdq")
+text = "eliminar"
+text_overrun_behavior = 1
+
+[node name="ButtonApartadoEliminadas2" type="Button" parent="apartadoEliminadas/PanelEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 503.0
+offset_top = 20.0
+offset_right = -136.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u33i8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nup35")
+text = "restaurar"
 
 [node name="LabelAvisoGuardado" type="Label" parent="."]
 layout_mode = 1

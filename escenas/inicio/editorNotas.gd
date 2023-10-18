@@ -27,7 +27,7 @@ func editor_guardar_y_salir() -> void:
 	fecha_modificacion = Global.Fecha
 	$Panel/ButtonAsignarColorEditor/ColorRectAsignarColorEditor.color = Global.NEGRO_PREDETERMINADO
 	$Panel/ColorRectEditorNota.color = Global.NEGRO_PREDETERMINADO
-	get_node(Global.RUTA_NODO_LISTA + editandoNota).actualizar_nota_enlistada(titulo,color_nota,fecha_modificacion)
+	#get_node(Global.RUTA_NODO_LISTA + editandoNota).actualizar_nota_enlistada(titulo,color_nota,fecha_modificacion)
 	Global.guardar_en_archivo_txt(escribiendo_texto,editandoNota,titulo,color_nota,fecha_modificacion)
 	$ScrollContainer/TextEdit.text = ""
 	$Panel/LineEditTituloNota.text = ""
