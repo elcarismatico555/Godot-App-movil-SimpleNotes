@@ -11,12 +11,14 @@ var MORADO: Color = Color8(162,61,196,255)
 var ANARANJADO: Color = Color8(235,140,33,255)
 var NEGRO_PREDETERMINADO: Color = Color8(33,35,41,255)
 var RUTA_NODO_LISTA: String = "/root/main/body/ScrollContainer/VBoxContainer/"
+var RUTA_NODO_ELIMINADAS: String = "/root/main/apartadoEliminadas/ScrollContainer/VBoxContainerEliminadas/"
 var RUTA_ARCHIVOS: String = "user://"
 var NODO_LISTA_ELIMINADAS = Node.new()
+var NODO_LISTA = Node.new()
 
 func _ready() -> void:
-	NODO_LISTA_ELIMINADAS = get_node("/root/main/apartadoEliminadas/ScrollContainer/VBoxContainerEliminadas")
-	print(NODO_LISTA_ELIMINADAS)
+	NODO_LISTA_ELIMINADAS = get_node(RUTA_NODO_ELIMINADAS)
+	NODO_LISTA =  get_node(RUTA_NODO_LISTA)
 	formato_fecha()
 	get_tree().root.disable_3d = true
 
@@ -26,14 +28,13 @@ func formato_fecha() -> void:
 	Fecha = Fecha + "/" + str(DictHoraFecha.year)
 
 	#  crear archivo
-func guardar_en_archivo_txt(content,referenciaNota,tituloNota,color,fechaMod) -> void:
-	if content == null:
-		content = ""
+func guardar_en_archivo_txt(content,referenciaNota,tituloNota,color,fechaMod,en_papelera) -> void:
 	var archivo = ConfigFile.new()
 	archivo.set_value("contenido","contenido", content)
 	archivo.set_value("contenido","titulo_nota",tituloNota)
 	archivo.set_value("contenido","color",color)
 	archivo.set_value("contenido","fechaModificacion",fechaMod)
+	archivo.set_value("contenido","en_papelera",en_papelera)
 	print(archivo.encode_to_text())
 	if archivo.save("user://" + referenciaNota) != OK:
 		print("error")
@@ -45,6 +46,7 @@ func leer_archivo_txt(referenciaNota) -> Dictionary:
 	var color
 	var titulo
 	var fecha_mod
+	var en_papelera
 	var diccionario_retorno: Dictionary
 	var archivo = ConfigFile.new()
 	if archivo.load("user://" + referenciaNota) != OK:
@@ -54,7 +56,8 @@ func leer_archivo_txt(referenciaNota) -> Dictionary:
 		titulo = archivo.get_value("contenido", "titulo_nota")
 		color = archivo.get_value("contenido", "color")
 		fecha_mod = archivo.get_value("contenido","fechaModificacion")
-		diccionario_retorno = {"contenido":content, "titulo":titulo, "color":color, "fecha_mod":fecha_mod}
+		en_papelera = archivo.get_value("contenido","en_papelera")
+		diccionario_retorno = {"contenido":content, "titulo":titulo, "color":color, "fecha_mod":fecha_mod, "en_papelera":en_papelera}
 	return diccionario_retorno
 
 func verificador_notas_en_disco() -> Array:

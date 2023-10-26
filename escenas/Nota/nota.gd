@@ -12,10 +12,8 @@ func _ready() -> void:
 
 #  Al presionar la nota desde la lista
 func _on_button_nota_enlistada_button_up() -> void:
-	$/root/main/editorNota.editar_nota(name)
-	$/root/main/editorNota.modo_lectura()
+	$/root/main/editorNota.editar_nota(name,en_papelera)
 	$/root/main/editorNota.visible = true
-	cambiar_padre(false)
 
 func actualizar_nota_enlistada(tituloNota,color,fechaMod) -> void:
 	$HBoxContainer/LabelTitulo.text = tituloNota
@@ -25,10 +23,14 @@ func actualizar_nota_enlistada(tituloNota,color,fechaMod) -> void:
 	$HBoxContainer/ColorRect.color.b8 = color[2]
 	$HBoxContainer/ColorRect.color.a8 = color[3]
 
-func cambiar_padre(restaurar:bool):
+func enviar_a_papelera():
+	$HBoxContainer/ColorRect.color.r8 = Global.NEGRO_PREDETERMINADO[0]
+	$HBoxContainer/ColorRect.color.g8 = Global.NEGRO_PREDETERMINADO[1]
+	$HBoxContainer/ColorRect.color.b8 = Global.NEGRO_PREDETERMINADO[2]
+	$HBoxContainer/ColorRect.color.a8 = Global.NEGRO_PREDETERMINADO[3]
 	en_papelera = true
-	if restaurar:
-		pass
-	reparent(Global)
 	reparent(Global.NODO_LISTA_ELIMINADAS)
-	print(get_parent())
+
+func restaurar():
+	en_papelera = false
+	reparent(Global.NODO_LISTA)

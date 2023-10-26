@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dns4nlx5tu5ft"]
+[gd_scene load_steps=43 format=3 uid="uid://dns4nlx5tu5ft"]
 
 [ext_resource type="Script" path="res://escenas/inicio/manager.gd" id="1_s58n5"]
 [ext_resource type="Texture2D" uid="uid://goum7nkowi0s" path="res://Resources/icons/LupaBlanca1.png" id="2_bxi8w"]
@@ -76,8 +76,23 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.8, 0.431373, 0.431373, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nj7eu"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt75e"]
+bg_color = Color(0.152941, 0.164706, 0.188235, 1)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8vif"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63qdq"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5161y"]
-bg_color = Color(0, 0, 0, 0.607843)
+bg_color = Color(0, 0, 0, 0.705882)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odw5"]
 content_margin_left = 5.0
@@ -110,20 +125,6 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt75e"]
-bg_color = Color(0.152941, 0.164706, 0.188235, 1)
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8vif"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63qdq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u33i8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nup35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajqkp"]
 content_margin_left = 15.0
@@ -466,6 +467,82 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 
+[node name="apartadoEliminadas" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_fcqlf")
+
+[node name="ColorRectEliminadas" type="ColorRect" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.235294, 0.270588, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.073
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.120003
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nj7eu")
+
+[node name="VBoxContainerEliminadas" type="VBoxContainer" parent="apartadoEliminadas/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="PanelEliminadas" type="Panel" parent="apartadoEliminadas"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.073
+offset_bottom = 0.119987
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pt75e")
+
+[node name="LabelEliminadas" type="Label" parent="apartadoEliminadas/PanelEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.5
+offset_right = -273.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = " Papelera"
+vertical_alignment = 1
+
+[node name="ButtonApartadoEliminadasRestaurar" type="Button" parent="apartadoEliminadas/PanelEliminadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 616.0
+offset_top = 20.0
+offset_right = -23.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h8vif")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_63qdq")
+text = "restaurar
+todas"
+text_overrun_behavior = 1
+
 [node name="editorNota" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -493,6 +570,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.129412, 0.137255, 0.160784, 1)
 
 [node name="LineEditTituloNota" type="LineEdit" parent="editorNota/Panel"]
 layout_mode = 1
@@ -507,7 +585,7 @@ grow_horizontal = 2
 grow_vertical = 2
 auto_translate = false
 theme_override_colors/font_color = Color(0.0666667, 0.0588235, 0.0588235, 1)
-theme_override_colors/font_placeholder_color = Color(0.670588, 0.670588, 0.670588, 1)
+theme_override_colors/font_placeholder_color = Color(0.670588, 0.670588, 0.670588, 0.341176)
 theme_override_colors/caret_color = Color(0.101961, 0.0901961, 0.0901961, 1)
 theme_override_constants/caret_width = 4
 theme_override_font_sizes/font_size = 40
@@ -521,7 +599,6 @@ caret_blink = true
 caret_mid_grapheme = false
 
 [node name="LabelTituloNota" type="Label" parent="editorNota/Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -584,6 +661,38 @@ offset_left = 627.0
 offset_top = 20.0
 offset_right = -13.0
 offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "borrar"
+
+[node name="ButtonPapeleraRestaurar" type="Button" parent="editorNota/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.744
+anchor_top = 0.175
+anchor_right = 0.856
+anchor_bottom = 0.789
+offset_left = 0.320007
+offset_top = 0.0500011
+offset_right = -0.320068
+offset_bottom = 0.0540085
+grow_horizontal = 2
+grow_vertical = 2
+text = "restaurar"
+
+[node name="ButtonPapeleraEliminar" type="Button" parent="editorNota/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.871
+anchor_top = 0.175
+anchor_right = 0.982
+anchor_bottom = 0.789
+offset_left = -0.120056
+offset_top = 0.0500011
+offset_right = -0.0400391
+offset_bottom = 0.0540085
 grow_horizontal = 2
 grow_vertical = 2
 text = "eliminar"
@@ -865,95 +974,6 @@ focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_kcsya")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qdskv")
 
-[node name="apartadoEliminadas" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_fcqlf")
-
-[node name="ColorRectEliminadas" type="ColorRect" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.219608, 0.235294, 0.270588, 1)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.073
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.119987
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainerEliminadas" type="VBoxContainer" parent="apartadoEliminadas/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="PanelEliminadas" type="Panel" parent="apartadoEliminadas"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.073
-offset_bottom = 0.119987
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pt75e")
-
-[node name="LabelEliminadas" type="Label" parent="apartadoEliminadas/PanelEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 7.5
-offset_right = -273.0
-offset_bottom = -7.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 70
-text = " Papelera"
-vertical_alignment = 1
-
-[node name="ButtonApartadoEliminadas" type="Button" parent="apartadoEliminadas/PanelEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 616.0
-offset_top = 20.0
-offset_right = -23.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxEmpty_h8vif")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_63qdq")
-text = "eliminar"
-text_overrun_behavior = 1
-
-[node name="ButtonApartadoEliminadas2" type="Button" parent="apartadoEliminadas/PanelEliminadas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 503.0
-offset_top = 20.0
-offset_right = -136.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxEmpty_u33i8")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nup35")
-text = "restaurar"
-
 [node name="LabelAvisoGuardado" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -981,6 +1001,7 @@ vertical_alignment = 1
 [connection signal="button_up" from="editorNota/Panel/ButtonAsignarColorEditor" to="editorNota" method="_on_button_asignar_color_editor_button_up"]
 [connection signal="button_up" from="editorNota/Panel/ButtonEditarNotaEditor" to="editorNota" method="_on_button_editar_nota_editor_button_up"]
 [connection signal="button_up" from="editorNota/Panel/ButtonEliminarNotaEditor" to="editorNota" method="_on_button_eliminar_nota_editor_button_up"]
+[connection signal="button_up" from="editorNota/Panel/ButtonPapeleraRestaurar" to="editorNota" method="_on_button_papelera_restaurar_button_up"]
 [connection signal="gui_input" from="popupColores/fondopopup" to="popupColores" method="_on_fondopopup_gui_input"]
 [connection signal="button_up" from="popupColores/PanelPopup/GridContainer/ColorRectpopupNINGUNO/ButtonPopupNinguno" to="popupColores" method="_on_button_popup_ninguno_button_up"]
 [connection signal="button_up" from="popupColores/PanelPopup/GridContainer/ColorRectpopupGRIS/ButtonPopupGRIS" to="popupColores" method="_on_button_popup_gris_button_up"]

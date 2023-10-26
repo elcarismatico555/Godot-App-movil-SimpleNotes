@@ -8,14 +8,17 @@ func _ready() -> void:
 	$vistaBuscar.visible = false
 	$editorNota.visible = false
 	$popupColores.visible = false
-	#$apartadoEliminadas.visible = false
+	$apartadoEliminadas.visible = false
 	$LabelAvisoGuardado.text = str(Time.get_ticks_msec())
 	cargar_notas_previas_desde_disco()
 
 func _notification(what) -> void:
+	if what == NOTIFICATION_FOCUS_EXIT:
+		print("perdio foco")
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		if $editorNota.visible or $vistaBuscar.visible or $popupColores.visible:
-			pass
+		if $editorNota.visible or $vistaBuscar.visible or $popupColores.visible or $apartadoEliminadas.visible:
+			if $apartadoEliminadas.visible and $editorNota.visible:
+				pass
 		else:
 			get_tree().quit()
 
@@ -25,10 +28,13 @@ func _notification(what) -> void:
 		if $editorNota.visible == true:
 			if $editorNota/Panel/ButtonAsignarColorEditor.visible == true:
 				$editorNota.modo_lectura()
-			else:
 				$editorNota.editor_guardar_y_salir()
+			if $editorNota/Panel/ButtonPapeleraEliminar.visible == true:
+				$editorNota.visible = false
 		if $popupColores.visible == true:
 			$popupColores.visible = false
+		if $apartadoEliminadas.visible == true:
+			$apartadoEliminadas.visible = false
 
 func cargar_notas_previas_desde_disco() -> void:
 	notas_en_disco = Global.verificador_notas_en_disco()
@@ -51,12 +57,17 @@ func nueva_nota(crear_nueva:bool,notaEnDisco:String) -> void:
 		var titulo = retorno["titulo"]
 		var fecha_mod = retorno["fecha_mod"]
 		var color = retorno["color"]
-		get_node(Global.RUTA_NODO_LISTA).add_child(nuevo_hijo)
-		get_node(Global.RUTA_NODO_LISTA).get_child(-1).name = notaEnDisco
-		get_node(Global.RUTA_NODO_LISTA + notaEnDisco).actualizar_nota_enlistada(titulo,color,fecha_mod)
-
-func borrar_nota(nombreNota):
-	nota_eliminada = nombreNota
+		var en_papelera = retorno["en_papelera"]
+		if en_papelera:
+			color = Global.NEGRO_PREDETERMINADO
+			get_node(Global.RUTA_NODO_ELIMINADAS).add_child(nuevo_hijo,true)
+			get_node(Global.RUTA_NODO_ELIMINADAS).get_child(-1).name = notaEnDisco
+			get_node(Global.RUTA_NODO_ELIMINADAS).get_child(-1).en_papelera = true
+			get_node(Global.RUTA_NODO_ELIMINADAS + notaEnDisco).actualizar_nota_enlistada(titulo,color,fecha_mod)
+		else:
+			get_node(Global.RUTA_NODO_LISTA).add_child(nuevo_hijo)
+			get_node(Global.RUTA_NODO_LISTA).get_child(-1).name = notaEnDisco
+			get_node(Global.RUTA_NODO_LISTA + notaEnDisco).actualizar_nota_enlistada(titulo,color,fecha_mod)
 
 func buscar_nota() -> void:
 	$vistaBuscar.visible = true
@@ -87,7 +98,7 @@ func _on_button_grid_button_up() -> void:
 	$popupColores.visible = true
 
 func _on_button_opciones_main_button_up() -> void:
-	$opcionesSeleccion.visible = true
+	$apartadoEliminadas.visible = true
 
 func _input(_event) -> void:
 	if Input.is_action_pressed("ui_cancel"):
