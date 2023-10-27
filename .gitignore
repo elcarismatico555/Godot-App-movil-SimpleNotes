@@ -3,3 +3,4 @@
 android/
 godot
 export_presets.cfg
+*.tmp
