@@ -25,6 +25,7 @@ func editor_guardar_y_salir() -> void:
 		get_node(Global.RUTA_NODO_LISTA + editandoNota).actualizar_nota_enlistada(titulo,color_nota,fecha_modificacion)
 	if get_node_or_null(Global.RUTA_NODO_ELIMINADAS + editandoNota) != null:
 		get_node(Global.RUTA_NODO_ELIMINADAS + editandoNota).actualizar_nota_enlistada(titulo,color_nota,fecha_modificacion)
+	#  posiblemente podria añadir aqui algo para pisar el archivo vacio
 	Global.guardar_en_archivo_txt(escribiendo_texto,editandoNota,titulo,color_nota,fecha_modificacion,nota_en_papelera)
 	#  de aqui hacia abajo se resetean los valores para que la proxima vez que se habra el editor
 	#  sea segun los datos guardaddos
@@ -123,4 +124,9 @@ func _on_button_papelera_restaurar_button_up():
 	nota_en_papelera = false
 	editor_guardar_y_salir()
 	get_node(Global.RUTA_NODO_ELIMINADAS + editandoNota).restaurar()
+	visible = false
+
+func _on_button_papelera_eliminar_button_up():
+	Global.vaciar_archivo(editandoNota)
+	get_node(Global.RUTA_NODO_ELIMINADAS + editandoNota).queue_free()
 	visible = false

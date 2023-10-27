@@ -1002,6 +1002,7 @@ vertical_alignment = 1
 [connection signal="button_up" from="editorNota/Panel/ButtonEditarNotaEditor" to="editorNota" method="_on_button_editar_nota_editor_button_up"]
 [connection signal="button_up" from="editorNota/Panel/ButtonEliminarNotaEditor" to="editorNota" method="_on_button_eliminar_nota_editor_button_up"]
 [connection signal="button_up" from="editorNota/Panel/ButtonPapeleraRestaurar" to="editorNota" method="_on_button_papelera_restaurar_button_up"]
+[connection signal="button_up" from="editorNota/Panel/ButtonPapeleraEliminar" to="editorNota" method="_on_button_papelera_eliminar_button_up"]
 [connection signal="gui_input" from="popupColores/fondopopup" to="popupColores" method="_on_fondopopup_gui_input"]
 [connection signal="button_up" from="popupColores/PanelPopup/GridContainer/ColorRectpopupNINGUNO/ButtonPopupNinguno" to="popupColores" method="_on_button_popup_ninguno_button_up"]
 [connection signal="button_up" from="popupColores/PanelPopup/GridContainer/ColorRectpopupGRIS/ButtonPopupGRIS" to="popupColores" method="_on_button_popup_gris_button_up"]

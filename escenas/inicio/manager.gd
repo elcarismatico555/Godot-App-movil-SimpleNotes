@@ -1,7 +1,6 @@
 extends Control
 
 var notas_en_disco: Array
-var nota_eliminada: String
 
 func _ready() -> void:
 	$body/Label.text = Global.Fecha
@@ -14,7 +13,7 @@ func _ready() -> void:
 
 func _notification(what) -> void:
 	if what == NOTIFICATION_FOCUS_EXIT:
-		print("perdio foco")
+		pass
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		if $editorNota.visible or $vistaBuscar.visible or $popupColores.visible or $apartadoEliminadas.visible:
 			if $apartadoEliminadas.visible and $editorNota.visible:
