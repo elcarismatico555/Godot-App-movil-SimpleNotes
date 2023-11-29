@@ -11,9 +11,10 @@ func _ready() -> void:
 	$LabelAvisoGuardado.text = str(Time.get_ticks_msec())
 	cargar_notas_previas_desde_disco()
 
+func _process(_delta):
+	print(get_tree().root.has_focus())
+
 func _notification(what) -> void:
-	if what == NOTIFICATION_FOCUS_EXIT:
-		pass
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		if $editorNota.visible or $vistaBuscar.visible or $popupColores.visible or $apartadoEliminadas.visible:
 			if $apartadoEliminadas.visible and $editorNota.visible:

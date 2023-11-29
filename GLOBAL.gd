@@ -22,7 +22,6 @@ func _ready() -> void:
 	NODO_LISTA_ELIMINADAS = get_node(RUTA_NODO_ELIMINADAS)
 	NODO_LISTA = get_node(RUTA_NODO_LISTA)
 	formato_fecha()
-	get_tree().root.disable_3d = true
 
 func formato_fecha() -> void:
 	Fecha = str(DictHoraFecha.day)
