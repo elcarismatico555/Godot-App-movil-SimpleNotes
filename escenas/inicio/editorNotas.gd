@@ -19,7 +19,11 @@ func editor_guardar_y_salir() -> void:
 	color_nota[1] = $Panel/ColorRectEditorNota.color.g8
 	color_nota[2] = $Panel/ColorRectEditorNota.color.b8
 	color_nota[3] = $Panel/ColorRectEditorNota.color.a8
-	titulo = $Panel/LabelTituloNota.text
+	if not $Panel/LabelTituloNota.text == "":
+		titulo = $Panel/LabelTituloNota.text
+	else:
+		titulo = "(sin nombre)"
+		$Panel/LabelTituloNota.text = "(sin nombre)"
 	fecha_modificacion = Global.Fecha
 	if get_node_or_null(Global.RUTA_NODO_LISTA + editandoNota) != null:
 		get_node(Global.RUTA_NODO_LISTA + editandoNota).actualizar_nota_enlistada(titulo,color_nota,fecha_modificacion)

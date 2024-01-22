@@ -12,10 +12,13 @@ func _ready() -> void:
 	cargar_notas_previas_desde_disco()
 
 func _process(_delta):
-	print(get_tree().root.has_focus())
+	#print(get_tree().root.has_focus())
+	pass
 
 func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		release_focus()
+		print("back")
 		if $editorNota.visible or $vistaBuscar.visible or $popupColores.visible or $apartadoEliminadas.visible:
 			if $apartadoEliminadas.visible and $editorNota.visible:
 				pass
@@ -88,6 +91,10 @@ func _on_line_edit_text_changed(new_text) -> void:
 		$vistaBuscar/LineEdit/ButtonClearBuscar.visible = true
 	if new_text == "":
 		$vistaBuscar/LineEdit/ButtonClearBuscar.visible = false
+	if new_text == "changuito":
+		$vistaBuscar/VBoxContainerResultadoBuscar/TextureRect.visible = true
+	else:
+		$vistaBuscar/VBoxContainerResultadoBuscar/TextureRect.visible = false
 
 #  Input limpiar campo buscar nota
 func _on_button_clear_buscar_button_up() -> void:
