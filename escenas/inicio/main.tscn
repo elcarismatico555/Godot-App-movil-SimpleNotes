@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dns4nlx5tu5ft"]
+[gd_scene load_steps=43 format=3 uid="uid://dns4nlx5tu5ft"]
 
 [ext_resource type="Script" path="res://escenas/inicio/manager.gd" id="1_s58n5"]
 [ext_resource type="Texture2D" uid="uid://goum7nkowi0s" path="res://Resources/icons/LupaBlanca1.png" id="2_bxi8w"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://krhplcepd7kj" path="res://Resources/icons/cruz.png" id="3_t3jd3"]
 [ext_resource type="Script" path="res://escenas/inicio/lista_notas.gd" id="3_v8fbt"]
 [ext_resource type="Texture2D" uid="uid://ce70e8qrbwj3r" path="res://Resources/icons/menuHamburguesa.png" id="4_2ct6b"]
-[ext_resource type="Texture2D" uid="uid://3bqi7olexkgq" path="res://Resources/icons/lupaNegra.png" id="7_7q8p0"]
 [ext_resource type="Script" path="res://escenas/inicio/editorNotas.gd" id="7_am5js"]
 [ext_resource type="Script" path="res://escenas/inicio/popupColores.gd" id="8_cfbcx"]
 [ext_resource type="Script" path="res://escenas/inicio/apartadoEliminadas.gd" id="9_fcqlf"]
@@ -457,13 +456,6 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="vistaBuscar/VBoxContainerResultadoBuscar"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_7q8p0")
-stretch_mode = 2
-
 [node name="Label" type="Label" parent="vistaBuscar"]
 visible = false
 layout_mode = 1
@@ -605,6 +597,7 @@ max_length = 22
 context_menu_enabled = false
 shortcut_keys_enabled = false
 caret_blink = true
+caret_mid_grapheme = false
 
 [node name="LabelTituloNota" type="Label" parent="editorNota/Panel"]
 layout_mode = 1
